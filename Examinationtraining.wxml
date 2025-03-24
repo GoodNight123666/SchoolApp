@@ -1,0 +1,136 @@
+<!-- 考试信息区域 -->
+<view class="exam-info">
+  <view class="info-card {{activeType}}-theme">
+    <view class="info-title">{{examInfo[activeType].title}}</view>
+    <view class="info-content">
+      <view>报名网站：{{examInfo[activeType].website}}</view>
+      <view>报名时间：{{examInfo[activeType].registrationTime}}</view>
+      <view>考试时间：{{examInfo[activeType].examTime}}</view>
+      <view class="sub-title">考试科目：</view>
+      <view class="info-list">
+        <view wx:for="{{examInfo[activeType].subjects}}" wx:key="*this">
+          • {{item}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 主导航 -->
+<view class="nav-tabs">
+  <scroll-view scroll-x enable-flex enhanced show-scrollbar="{{false}}">
+    <view class="nav-tabs-content">
+      <view 
+        wx:for="{{examTypes}}" 
+        wx:key="type"
+        class="nav-tab {{activeType === item.type ? 'active' : ''}}"
+        data-type="{{item.type}}"
+        bind:tap="switchTab"
+      >
+        {{item.name}}
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<!-- 二级导航 -->
+<view class="sub-nav">
+  <scroll-view 
+    scroll-x 
+    enable-flex 
+    enhanced 
+    show-scrollbar="{{false}}"
+    class="filter-scroll"
+  >
+    <view class="year-filter">
+      <view 
+        wx:for="{{years}}" 
+        wx:key="*this"
+        class="filter-item {{activeYear === item ? 'active' : ''}}"
+        data-year="{{item}}"
+        bind:tap="selectYear"
+      >
+        {{item}}年
+      </view>
+    </view>
+  </scroll-view>
+  
+  <scroll-view 
+    scroll-x 
+    enable-flex 
+    enhanced 
+    show-scrollbar="{{false}}"
+    class="filter-scroll"
+  >
+    <view class="category-filter">
+      <view 
+        wx:for="{{categories[activeType]}}" 
+        wx:key="type"
+        class="filter-item {{activeCategory === item.type ? 'active' : ''}}"
+        data-category="{{item.type}}"
+        bind:tap="selectCategory"
+      >
+        {{item.name}}
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<!-- 资源列表 -->
+<view class="container">
+  <!-- 加载状态 -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <view class="loading"></view>
+    <text>加载中...</text>
+  </view>
+  
+  <!-- 空状态 -->
+  <view class="empty-state" wx:elif="{{filteredResources.length === 0}}">
+    <text>暂无相关资料</text>
+  </view>
+
+  <!-- 资源列表 -->
+  <view class="resources-grid" wx:else>
+    <view 
+      wx:for="{{filteredResources}}" 
+      wx:key="id"
+      class="resource-card"
+    >
+      <view class="resource-info">
+        <view class="file-type-icon {{item.fileType}}"></view>
+        <view class="content">
+          <view class="resource-title">{{item.title}}</view>
+          <view class="resource-desc">{{item.description}}</view>
+          <view class="resource-meta">
+            <view class="meta-info">
+              <text class="file-type">{{item.fileType}}</text>
+              <text class="file-size">{{item.fileSize}}</text>
+              <text class="download-count">{{item.downloadCount}}次下载</text>
+            </view>
+            <view class="action-buttons">
+              <button 
+                class="favorite-btn {{isFavorite[item.id] ? 'active' : ''}}"
+                data-id="{{item.id}}"
+                bind:tap="toggleFavorite"
+              >
+                <view class="star-icon {{isFavorite[item.id] ? 'filled' : ''}}"></view>
+              </button>
+              <button 
+                class="download-btn"
+                data-id="{{item.id}}"
+                bind:tap="handleDownload"
+              >
+                下载资料
+              </button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 我的下载记录入口 -->
+<view class="my-downloads-btn" bind:tap="navigateToMyDownloads">
+  <text>我的文件</text>
+</view>

@@ -1,0 +1,72 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/business/business",
+    "pages/forum/forum",
+    "pages/profile/profile",
+    "pages/review/review",
+    "pages/upload/upload",
+    "pages/mydownload/mydownload",
+    "pages/myorder/myorder",
+    "pages/mywallet/mywallet",
+    "pages/myattention/myattention",
+    "pages/coupon/coupon",
+    "pages/book/book",
+    "pages/supermarket/supermarket",
+    "pages/take-out/take-out",
+    "pages/errand/errand",
+    "pages/second-hand/second-hand",
+    "pages/food/food",
+    "pages/laundry/laundry",
+    "pages/lease/lease",
+    "pages/swabber/swabber",
+    "pages/Examinationtraining/Examinationtraining",
+    "pages/Receipthall/Receipthall",
+    "pages/takeorder/takeorder"
+  ],
+  "window": {
+    "navigationBarTitleText": "我的小程序"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#1aad19",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/tabbar/index.png",
+        "selectedIconPath": "assets/tabbar/active-index.png"
+      },
+      {
+        "pagePath": "pages/business/business",
+        "text": "业务",
+        "iconPath": "assets/tabbar/business.png",
+        "selectedIconPath": "assets/tabbar/active-business.png"
+      },
+      {
+        "pagePath": "pages/forum/forum",
+        "text": "论坛",
+        "iconPath": "assets/tabbar/forum.png",
+        "selectedIconPath": "assets/tabbar/active-forum.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "个人中心",
+        "iconPath": "assets/tabbar/profile.png",
+        "selectedIconPath": "assets/tabbar/active-profile.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 20000,
+    "connectSocket": 20000,
+    "uploadFile": 20000,
+    "downloadFile": 20000
+  },
+  "debug": true,
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
